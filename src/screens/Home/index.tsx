@@ -11,7 +11,12 @@ import {
   CarList,
 } from './styles';
 
-export function Home(){
+export function Home({navigation}){
+
+  function handleCardDetails() {
+    navigation.navigate('CardDetails');
+  }
+
   return (
     <Container>
       <Header>
@@ -27,7 +32,7 @@ export function Home(){
       </Header>
       <CarList
         data={[{brand: 'AUDI', name: 'RS 5 Coupé', rent: { period: 'ao dia', price: 200.00}, thumbnail: 'http://'}]}
-        renderItem={({item}) =><Car data={item}/>}
+        renderItem={({item}) =><Car data={item} onPress={handleCardDetails}/>}
       />
     </Container>
   );

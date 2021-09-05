@@ -24,15 +24,27 @@ import {
   Period,
   Price,
   Details,
-  About,
   Accessotries,
+  RentalPeriod,
+  CalendarIcon,
+  DateInfo,
+  DateTitle,
+  DateValue,
+  RentalPrice,
+  RentalPriceLabel,
+  RentalPriceDetails,
+  RentalPriceQuota,
+  RentalPriceTotal,
   Footer,
 } from './styles';
+import { Feather } from '@expo/vector-icons';
+import { RFValue } from 'react-native-responsive-fontsize';
+import theme from '../../global/styles/theme';
 
-export function CardDetails({navigation}){
+export function SchedulingDetails({navigation}){
 
   function handleConfirm() {
-    navigation.navigate('Scheduling');
+    navigation.navigate('SchedulingComplete');
   }
 
   function handleGoBack() {
@@ -74,12 +86,38 @@ export function CardDetails({navigation}){
           <Accessory name='800 HP' icon={ForceSvg}/>
           <Accessory name='Auto' icon={ExchangeSvg}/>
         </Accessotries>
-        <About>
-          Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
-        </About>
+        <RentalPeriod>
+          <CalendarIcon>
+            <Feather
+              name='calendar'
+              size={RFValue(15)}
+              color={theme.colors.shape}
+            />
+          </CalendarIcon>
+          <DateInfo>
+            <DateTitle>DE</DateTitle>
+            <DateValue>01/08/2021</DateValue>
+          </DateInfo>
+          <Feather
+            name='chevron-right'
+            size={RFValue(15)}
+            color={theme.colors.text}
+          />
+          <DateInfo>
+            <DateTitle>DE</DateTitle>
+            <DateValue>01/08/2021</DateValue>
+          </DateInfo>
+        </RentalPeriod>
+        <RentalPrice>
+          <RentalPriceLabel>Total</RentalPriceLabel>
+          <RentalPriceDetails>
+            <RentalPriceQuota>R$ 580 x3 diárias</RentalPriceQuota>
+            <RentalPriceTotal>R$ 2.900</RentalPriceTotal>
+          </RentalPriceDetails>
+        </RentalPrice>
       </Content>
       <Footer>
-        <Button title="Adicionar" onPress={handleConfirm}/>
+        <Button title="Alugar agora" onPress={handleConfirm}/>
       </Footer>
     </Container>
   );

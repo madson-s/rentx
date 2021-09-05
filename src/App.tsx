@@ -13,11 +13,9 @@ import {
   Inter_600SemiBold,
 } from '@expo-google-fonts/inter'
 
-import { Home } from './src/screens/Home';
+import { Routes } from './routes/stack.routes';
 
-import theme from './src/global/styles/theme';
-import { CardDetails } from './src/screens/CardDetails';
-import { Scheduling } from './src/screens/Scheduling';
+import theme from './global/styles/theme';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -35,9 +33,8 @@ export default function App() {
     <>
       <StatusBar translucent backgroundColor="transparent" style="light"/>
       <ThemeProvider theme={theme}>
-        {/* <Home /> */}
-        {/* <CardDetails/> */}
-        <Scheduling />
+
+        <Routes />
       </ThemeProvider>
     </>
   );

@@ -16,13 +16,24 @@ import {
   Footer,
 } from './styles';
 import { Button } from '../../components/Button';
+import { Calendar } from '../../components/Calendar';
 
-export function Scheduling(){
+export function Scheduling({navigation}){
+
   const theme = useTheme();
+
+  function handleConfirm() {
+    navigation.navigate('SchedulingDetails');
+  }
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   return (
     <Container>
       <Header>
-        <BackButton color={theme.colors.shape} onPress={() => {}} />
+        <BackButton color={theme.colors.shape} onPress={handleGoBack} />
 
         <Title>
           Escolha uma {'\n'}
@@ -46,11 +57,11 @@ export function Scheduling(){
       </Header>
 
       <Content>
-
+      <Calendar />
       </Content>
 
       <Footer>
-        <Button title="Confirmar"/>
+        <Button title="Confirmar" onPress={handleConfirm}/>
       </Footer>
     </Container>
   );

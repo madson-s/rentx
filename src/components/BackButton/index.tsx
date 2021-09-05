@@ -7,11 +7,12 @@ import {
 
 interface Props extends BorderlessButtonProps{
   color: string;
+  onPress: () => void;
 }
 
-export function BackButton({color, ...rest}: Props){
+export function BackButton({color, onPress, ...rest}: Props){
   return (
-    <Container {...rest}>
+    <Container {...rest} onPress={onPress}>
       <MaterialIcons name="chevron-left" size={24} color={color}/>
     </Container>
   );
