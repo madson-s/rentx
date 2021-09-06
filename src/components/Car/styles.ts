@@ -7,6 +7,7 @@ export const Container = styled(RectButton)`
   padding: 24px;
   background-color: ${({theme}) => theme.colors.background_primary};
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const Details = styled.View`
