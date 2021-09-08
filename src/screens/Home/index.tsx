@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { Alert } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import Logo from '../../assets/logo.svg';
 import { Car } from '../../components/Car';
@@ -26,7 +27,7 @@ export function Home({navigation}){
         setCars(response.data);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        Alert.alert('Ocorreu um erro tente novamente mais tarde.')
       }
     }
 

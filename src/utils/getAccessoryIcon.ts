@@ -19,6 +19,5 @@ const accessoriesIcons = {
 }
 
 export function getAccessoryIcon(type: string) {
-  console.log(type);
   return accessoriesIcons[type];
 }
