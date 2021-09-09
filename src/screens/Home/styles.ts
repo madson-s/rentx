@@ -1,8 +1,11 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { getBottomSpace, getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { CarDTO } from '../../dtos/carDTO';
+import { RectButton } from 'react-native-gesture-handler';
+import { Ionicons } from '@expo/vector-icons';
+import theme from '../../global/styles/theme';
 
 export const Container = styled.View`
   flex: 1;
@@ -39,3 +42,22 @@ export const CarSeparator = styled.View`
   width: 100%;
   height: 16px;
 `;
+
+export const FloatingButton = styled(RectButton)`
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: ${({theme}) => theme.colors.main};
+
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  bottom: ${getBottomSpace() + 12}px;
+  right: 12px;
+`;
+
+export const FloatingIcon = styled(Ionicons).attrs({
+  size: 32,
+  color: theme.colors.shape,
+})``;

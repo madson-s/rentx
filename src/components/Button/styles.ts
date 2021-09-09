@@ -1,6 +1,8 @@
+import { ActivityIndicator } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
+import theme from '../../global/styles/theme';
 
 interface ContainerProps {
   color: string;
@@ -15,8 +17,12 @@ export const Container = styled(RectButton)<ContainerProps>`
   background-color: ${({theme, color}) => color ? color : theme.colors.main};
 `;
 
-export const Text = styled.Text`
+export const Title = styled.Text`
   font-family: ${({theme}) => theme.fonts.primary_500};
   font-size: ${RFValue(15)}px;
   color: ${({theme}) => theme.colors.shape};
 `;
+
+export const Indicator = styled(ActivityIndicator).attrs({
+  color: theme.colors.shape,
+})``;

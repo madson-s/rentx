@@ -2,7 +2,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { Accessory } from '../../components/Accessory';
 import { Feather } from '@expo/vector-icons';
 import { Alert } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 import { ImagesSlider } from '../../components/ImagesSlider';
@@ -53,6 +53,7 @@ interface ParamsPros {
 
 export function SchedulingDetails({navigation, route}){
 
+  const [isLoading, setIsLoading] = useState(true);
   const {car, rentalPeriod, dates} = route.params as ParamsPros;
 
 
@@ -67,6 +68,13 @@ export function SchedulingDetails({navigation, route}){
       ...schedulesByCar.data.unavailable_dates,
       ...dates,
     }
+
+    api.post('/schedules_byuser', {
+      user_id: 1,
+      car,
+      startDate: rentalPeriod.startFormated,
+      endDate: rentalPeriod.endFormated,
+    })
 
     api.put(`/schedules_bycars/${car.id}`, {
       id: car.id,
@@ -145,7 +153,7 @@ export function SchedulingDetails({navigation, route}){
         </RentalPrice>
       </Content>
       <Footer>
-        <Button title="Alugar agora" onPress={handleConfirm}/>
+        <Button title="Alugar agora" isLoading={loading} onPress={handleConfirm}/>
       </Footer>
     </Container>
   );

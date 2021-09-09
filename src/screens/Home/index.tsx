@@ -13,6 +13,8 @@ import {
   TotalCars,
   CarList,
   CarSeparator,
+  FloatingButton,
+  FloatingIcon,
 } from './styles';
 
 export function Home({navigation}){
@@ -38,6 +40,10 @@ export function Home({navigation}){
     navigation.navigate('CardDetails', {car});
   }
 
+  function handleMyCars() {
+    navigation.navigate('MyCars');
+  }
+
   return (
     <Container>
       <Header>
@@ -61,6 +67,9 @@ export function Home({navigation}){
           <CarSeparator />
         }
       />
+      <FloatingButton onPress={handleMyCars}>
+        <FloatingIcon name="car" />
+      </FloatingButton>
     </Container>
   );
 }
