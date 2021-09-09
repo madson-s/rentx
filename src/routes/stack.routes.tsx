@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import { Splash } from '../screens/Splash';
 import { Home } from '../screens/Home';
 import { CardDetails } from '../screens/CardDetails';
 import { MyCars } from '../screens/MyCars';
@@ -17,7 +18,8 @@ export function Routes () {
       <Navigator screenOptions={{
         headerShown: false,
       }}>
-        <Screen name='Home' component={Home}/>
+        <Screen name='Splash' component={Splash}/>
+        <Screen name='Home' component={Home} options={{gestureEnabled: false}}/>
         <Screen name='CardDetails' component={CardDetails}/>
         <Screen name='MyCars' component={MyCars}/>
         <Screen name='Scheduling' component={Scheduling}/>

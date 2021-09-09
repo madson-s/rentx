@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { ActivityIndicator, Alert, FlatList } from 'react-native';
 import { BackButton } from '../../components/BackButton';
 import { Car } from '../../components/Car';
+import { LoadingAnimation } from '../../components/LoadingAnimation';
 import { CarDTO } from '../../dtos/carDTO';
 import theme from '../../global/styles/theme';
 import { api } from '../../server/api';
@@ -70,7 +71,7 @@ export function MyCars({navigation}){
         </Subtitle>
       </Header>
       {isLoading ? (
-        <ActivityIndicator />
+        <LoadingAnimation />
        ) : (
          <Content>
           <Appointments>

@@ -1,7 +1,15 @@
 import React from 'react';
 import { Accessory } from '../../components/Accessory';
-
+import {StatusBar} from 'react-native';
 import { BackButton } from '../../components/BackButton';
+import {
+  Extrapolate,
+  interpolate,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue
+} from 'react-native-reanimated';
+
 import { ImagesSlider } from '../../components/ImagesSlider';
 import { Button } from '../../components/Button';
 
@@ -20,6 +28,7 @@ import {
   About,
   Accessotries,
   Footer,
+  AnimatedHeaderWrapper,
 } from './styles';
 import { CarDTO } from '../../dtos/carDTO';
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
@@ -32,6 +41,34 @@ export function CardDetails({navigation, route}){
 
   const {car} = route.params as Car;
 
+  const scrollY = useSharedValue(0);
+
+  const scrollHandler = useAnimatedScrollHandler(event => {
+    scrollY.value = event.contentOffset.y;
+  })
+
+  const headerStyleAnimation = useAnimatedStyle(() => {
+    return {
+      height: interpolate(
+        scrollY.value,
+        [0, 200],
+        [200, 70],
+        Extrapolate.CLAMP,
+      )
+    }
+  });
+
+  const sliderCarStyleAnimation = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(
+        scrollY.value,
+        [0, 150],
+        [1, 0],
+        Extrapolate.CLAMP,
+      )
+    }
+  });
+
   function handleConfirm() {
     navigation.navigate('Scheduling', {car});
   }
@@ -42,15 +79,27 @@ export function CardDetails({navigation, route}){
 
   return (
     <Container>
-      <Header>
-        <BackButton color={'red'} onPress={handleGoBack}/>
-      </Header>
-      <CarImages>
-        <ImagesSlider
-          imagesUrl={car.photos}
-        />
-      </CarImages>
-      <Content>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent
+      />
+
+      <AnimatedHeaderWrapper style={headerStyleAnimation}>
+        <Header>
+          <BackButton color={'red'} onPress={handleGoBack}/>
+        </Header>
+        <CarImages style={sliderCarStyleAnimation}>
+          <ImagesSlider
+            imagesUrl={car.photos}
+          />
+        </CarImages>
+      </AnimatedHeaderWrapper>
+
+      <Content
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+      >
         <Details>
           <Description>
             <Brand>{car.brand}</Brand>
