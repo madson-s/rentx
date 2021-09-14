@@ -87,7 +87,7 @@ export function CardDetails({navigation, route}){
 
       <AnimatedHeaderWrapper style={headerStyleAnimation}>
         <Header>
-          <BackButton color={'red'} onPress={handleGoBack}/>
+          <BackButton color="dark" onPress={handleGoBack}/>
         </Header>
         <CarImages style={sliderCarStyleAnimation}>
           <ImagesSlider
@@ -106,8 +106,8 @@ export function CardDetails({navigation, route}){
             <Name>{car.name}</Name>
           </Description>
           <Rent>
-            <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Period>{car.period}</Period>
+            <Price>R$ {car.price}</Price>
           </Rent>
         </Details>
         <Accessotries>

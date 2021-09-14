@@ -59,7 +59,7 @@ export function MyCars({navigation}){
   return (
     <Container>
       <Header>
-        <BackButton color={theme.colors.shape} onPress={handleGoBack} />
+        <BackButton color="light" onPress={handleGoBack} />
 
         <Title>
           Seus agendamentos {'\n'}

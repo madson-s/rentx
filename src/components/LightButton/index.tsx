@@ -4,23 +4,17 @@ import { RectButtonProps } from 'react-native-gesture-handler';
 import {
   Container,
   Title,
-  Indicator,
 } from './styles';
 
 interface Props extends RectButtonProps {
   title: string;
-  color?: 'main' | 'success';
-  isLoading?: boolean;
+  color?: string;
 }
 
-export function Button({ title, color, isLoading = false, ...rest }: Props){
+export function LightButton({ title, color, ...rest }: Props){
   return (
     <Container color={color} {...rest}>
-      {isLoading ? (
-        <Indicator />
-      ) : (
-        <Title>{title}</Title>
-      )}
+      <Title>{title}</Title>
     </Container>
   );
 }

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Alert, BackHandler } from 'react-native';
+import { Alert } from 'react-native';
 import { PanGestureHandler } from 'react-native-gesture-handler';
 import {
   useAnimatedGestureHandler,
@@ -71,12 +71,6 @@ export function Home({navigation}){
 
     fetchCars();
   },[]);
-
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', () => {
-      return true;
-    })
-  }, []);
 
   function handleCardDetails(car: CarDTO) {
     navigation.navigate('CardDetails', {car});

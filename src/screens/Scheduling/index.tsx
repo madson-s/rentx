@@ -87,7 +87,7 @@ export function Scheduling({navigation, route}){
   return (
     <Container>
       <Header>
-        <BackButton color={theme.colors.shape} onPress={handleGoBack} />
+        <BackButton color="dark" onPress={handleGoBack} />
 
         <Title>
           Escolha uma {'\n'}

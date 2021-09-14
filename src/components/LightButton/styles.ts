@@ -9,20 +9,11 @@ interface ContainerProps {
 }
 
 export const Container = styled(RectButton)<ContainerProps>`
-  width: 100%;
-
-  padding: 19px;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({theme, color}) => color === 'success' ? theme.colors.success : theme.colors.main};
+  margin-top: 16px;
 `;
 
 export const Title = styled.Text`
   font-family: ${({theme}) => theme.fonts.primary_500};
   font-size: ${RFValue(15)}px;
-  color: ${({theme}) => theme.colors.shape};
+  color: ${({theme}) => theme.colors.title};
 `;
-
-export const Indicator = styled(ActivityIndicator).attrs({
-  color: theme.colors.shape,
-})``;

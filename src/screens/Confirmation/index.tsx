@@ -15,12 +15,20 @@ import {
   Footer,
 } from './styles';
 
-export function SchedulingComplete({navigation}){
+interface Params {
+  title: string;
+  message: string;
+  nextScreenName: string;
+}
+
+export function Confirmation({navigation, route}){
+
+  const { title, message, nextScreenName } = route.params as Params;
 
   const {width} = useWindowDimensions();
 
   function handleConfirm() {
-    navigation.navigate('Home');
+    navigation.navigate(nextScreenName);
   }
 
   return (
@@ -29,13 +37,9 @@ export function SchedulingComplete({navigation}){
       <LogoSvg width={width}/>
       <Content>
         <DoneSvg width={88} height={88}/>
-        <Title>Carro alugado!</Title>
+        <Title>{title}</Title>
 
-        <Message>
-          Agora você só precisa ir {'\n'}
-          até a concessionária da RENTX {'\n'}
-          pegar o seu automóvel.
-        </Message>
+        <Message>{message}</Message>
       </Content>
       <Footer>
         <ConfirmButton title='OK' onPress={handleConfirm}/>

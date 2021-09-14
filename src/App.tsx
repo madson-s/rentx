@@ -13,9 +13,10 @@ import {
   Inter_600SemiBold,
 } from '@expo-google-fonts/inter'
 
-import { Routes } from './routes/stack.routes';
+import { Routes } from './routes';
 
 import theme from './global/styles/theme';
+import { AppProvider } from './hook';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -33,8 +34,9 @@ export default function App() {
     <>
       <StatusBar translucent backgroundColor="transparent" style="light"/>
       <ThemeProvider theme={theme}>
-
-        <Routes />
+        <AppProvider>
+          <Routes />
+        </AppProvider>
       </ThemeProvider>
     </>
   );

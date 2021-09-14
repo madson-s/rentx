@@ -42,7 +42,7 @@ export function Splash({ navigation }){
   }, []);
 
   function startApp() {
-    navigation.navigate('Home');
+    navigation.navigate('SignIn');
   }
 
   return (

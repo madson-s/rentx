@@ -59,7 +59,7 @@ export function SchedulingDetails({navigation, route}){
 
   const days = dates.length;
 
-  const total = days * car.rent.price;
+  const total = days * car.price;
 
   async function handleConfirm() {
     const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`);
@@ -80,7 +80,11 @@ export function SchedulingDetails({navigation, route}){
       id: car.id,
       unavailable_dates,
     })
-    .then(() => navigation.navigate('SchedulingComplete'))
+    .then(() => navigation.navigate('Confirmation', {
+      title: 'Carro alugado!',
+      message: `Agora você só precisa ir \n até a concessionária da RENTX \n pegar o seu automóvel.`,
+      nextScreenName: 'Home'
+    }))
     .catch(() => Alert.alert("Não foi possível confirmar o agendamento"));
   }
 
@@ -91,7 +95,7 @@ export function SchedulingDetails({navigation, route}){
   return (
     <Container>
       <Header>
-        <BackButton color={'red'} onPress={handleGoBack}/>
+        <BackButton color="dark" onPress={handleGoBack}/>
       </Header>
       <CarImages>
         <ImagesSlider
@@ -109,8 +113,8 @@ export function SchedulingDetails({navigation, route}){
             </Name>
           </Description>
           <Rent>
-            <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Period>{car.period}</Period>
+            <Price>R$ {car.price}</Price>
           </Rent>
         </Details>
         <Accessotries>
@@ -147,13 +151,13 @@ export function SchedulingDetails({navigation, route}){
         <RentalPrice>
           <RentalPriceLabel>Total</RentalPriceLabel>
           <RentalPriceDetails>
-            <RentalPriceQuota>R$ {car.rent.price} x{days} diária{days > 1 && 's'}</RentalPriceQuota>
+            <RentalPriceQuota>R$ {car.price} x{days} diária{days > 1 && 's'}</RentalPriceQuota>
             <RentalPriceTotal>R$ {total}</RentalPriceTotal>
           </RentalPriceDetails>
         </RentalPrice>
       </Content>
       <Footer>
-        <Button title="Alugar agora" isLoading={loading} onPress={handleConfirm}/>
+        <Button title="Alugar agora" isLoading={isLoading} onPress={handleConfirm}/>
       </Footer>
     </Container>
   );
